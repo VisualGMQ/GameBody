@@ -37,3 +37,8 @@
 * 对gbWindow和geomentry写了doxygen注释。
 * 添加了gbInput，但是没办法使用，后面要重写。
 * 添加了gbDrawTool，没有写完。
+
+**2019.3.12**
+
+* 完成了gbDrawTool，并且测试完毕。写了例子在example里面
+* 将GameBody作为一个新的工程，放在了新的仓库里面。
