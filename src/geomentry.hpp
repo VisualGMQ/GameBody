@@ -16,6 +16,7 @@
  */
 class gbRect{
 public:
+    gbRect();
 	gbRect(int x,int y,int w,int h);
 	gbRect(SDL_Rect rect);
 	bool operator==(gbRect) const;
@@ -35,6 +36,7 @@ private:
  */
 class gbPoint{
 public:
+    gbPoint();
 	gbPoint(int x,int y);
 	gbPoint(SDL_Point p);
 	bool operator==(gbPoint) const;
@@ -54,6 +56,7 @@ private:
  */
 class gbSize{
 public:
+    gbSize();
 	gbSize(int w,int h);
 	bool operator==(gbSize) const;
 	bool operator!=(gbSize) const;

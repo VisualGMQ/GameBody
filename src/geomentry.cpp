@@ -1,5 +1,12 @@
 #include "geomentry.hpp"
 
+gbRect::gbRect(){
+    rect.x=0;
+    rect.y=0;
+    rect.w=0;
+    rect.h=0;
+}
+
 gbRect::gbRect(int x,int y,int w,int h){
 	rect.x = x;
 	rect.y = y;
@@ -19,6 +26,11 @@ bool gbRect::operator!=(gbRect r) const{
 	return !(*this == r);
 }
 
+gbPoint::gbPoint(){
+    point.x = 0;
+    point.y = 0;
+}
+
 gbPoint::gbPoint(int x,int y){
 	point.x = x;
 	point.y = y;
@@ -34,6 +46,11 @@ bool gbPoint::operator==(gbPoint p) const{
 
 bool gbPoint::operator!=(gbPoint p) const{
 	return !(*this == p);
+}
+
+gbSize::gbSize(){
+    size.x = 0;
+    size.y = 0;
 }
 
 gbSize::gbSize(int w,int h){

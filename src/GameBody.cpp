@@ -4,21 +4,24 @@ using namespace std;
 GameBody::GameBody(const string title,int width,int height,Uint32 flag,int delaytime):error(false),gamequit(false),delaytime(delaytime),render(nullptr){
     win = new gbWindow(title,width,height,flag);
 	render = win->getRender();
+    texturefactory = new textureFactory(render);
+    drawTool = new gbDrawTool(render);
 }
 
-void GameBody::eventHandle(){
-	while(SDL_PollEvent(&event)){
-		if(event.type==SDL_QUIT){
-			gamequit=true;
-			SDL_Quit();
-		}
-	}
+void GameBody::dealEvent(){
+ 	while(SDL_PollEvent(&event))
+        eventHandle(event);
 }
 
 void GameBody::renderBegin(){
 	SDL_SetRenderTarget(render,win->getCanva());
 	SDL_SetRenderDrawColor(render,255,255,255,255);
 	SDL_RenderClear(render);	
+}
+
+void GameBody::eventHandle(SDL_Event& event){
+    if(event.type == SDL_QUIT)
+        gameExit();
 }
 
 void GameBody::renderEnd(){
@@ -33,7 +36,7 @@ void GameBody::delay(int millisec){
 
 void GameBody::step(){
 	renderBegin();
-	eventHandle();
+    dealEvent();
 	update();
 	renderEnd();
 	delay(delaytime);
@@ -43,6 +46,12 @@ GameBody::~GameBody(){
 	clean();
     if(win != nullptr)
         delete win;
+    if(drawTool != nullptr)
+        delete drawTool;
+    if(texturefactory != nullptr)
+        delete texturefactory;
     win = nullptr;
     render = nullptr;
+    drawTool = nullptr;
+    texturefactory = nullptr;
 }

@@ -13,6 +13,7 @@
 #include "geomentry.hpp"
 #include "gbDrawTool.hpp"
 #include "header.hpp"
+#include "gbTexture.hpp"
 //#include "gbInput.hpp"
 
 #include <string>
@@ -83,9 +84,12 @@ public:
 	GameBody(const string title,int width,int height,Uint32 flag,int delaytime);
 	/**
 	 * @fn eventHandle()
-	 * @brief 事件处理函数，你可以重写这个事件来给出你自己的处理过程。这个里面只是给出了退出事件的监测
+	 * @brief 事件处理函数，你可以重写这个事件来给出你自己的处理过程。
+     * @param evetn 传入的事件结构体
+     *
+     * 这个函数是开放给用户的事件接口。如果你不重写它，那么他会在窗口关闭的时候自动推出。但是如果你重写了它，你必须显式调用gameExit()函数退出。
 	 */
-	virtual void eventHandle();
+	virtual void eventHandle(SDL_Event& event);
 	/**
 	 * @fn update()
 	 * @brief 每一帧要执行的代码，你几乎必须重写这个函数来实现你自己的功能（除非你想要一个不做任何事情的窗口）
@@ -106,12 +110,13 @@ public:
 	 * @fn isQuit()
 	 * @brief 你不应该重写这个函数，它是用于在循环里面判断是否退出程序的函数
 	 */
-	bool isQuit(){return gamequit;};
+	bool isQuit(){return gamequit;}
+    void gameExit(){gamequit = true;}
 	/**
 	 * fn clean()
 	 * @brief 会在析构函数里面调用，用于程序最后的清楚
 	 */
-	virtual void clean(){};
+	virtual void clean(){}
 	/**
 	 * @fn ~GameBody()
 	 * @brief 析构函数
@@ -124,8 +129,11 @@ protected:
 	bool error;
 	bool gamequit;
 	int delaytime;
+    gbDrawTool* drawTool;
+    textureFactory* texturefactory;
 	virtual void renderBegin();
 	virtual void renderEnd();
+    void dealEvent();
 };
 
 #endif
