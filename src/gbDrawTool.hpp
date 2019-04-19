@@ -45,7 +45,7 @@ public:
 	void drawText(SDL_Texture*,string text,gbRect rect,int ptsize,gbColor);
 	void drawTextShaded(SDL_Texture*,string text,int x,int y,int w,int h,int ptsize,gbColor fontColor,gbColor shadeColor);
 	void drawTextShaded(SDL_Texture*,string text,gbRect rect,int ptsize,gbColor fontColor,gbColor shadeColor);
-	void drawLine(SDL_Texture*,int x1,int x2,int y1,int y2,gbColor);
+	void drawLine(SDL_Texture*,int x1,int y1,int x2,int y2,gbColor);
 	void drawLine(SDL_Texture*,gbPoint p1,gbPoint p2,gbColor);
 	void drawCircle(SDL_Texture*,int centerx,int centery,int radius,gbColor);
 	void drawCircle(SDL_Texture*,gbPoint center,int radius,gbColor);

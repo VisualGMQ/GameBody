@@ -63,6 +63,18 @@ void gbTexture::setPos(int x, int y){
     position.setY(y);
 }
 
+void gbTexture::setKeyColor(gbColor color){
+    keyColor = color;
+    Uint32 c = SDL_MapRGB(surface->format, color.getR(), color.getG(), color.getB());
+    SDL_Log("%x", c);
+    if(isKeyColor)
+        SDL_SetColorKey(surface, SDL_TRUE, c); 
+    else
+        SDL_SetColorKey(surface, SDL_FALSE, c); 
+    SDL_DestroyTexture(texture);
+    texture = SDL_CreateTextureFromSurface(render, surface);
+}
+
 void gbTexture::scale(int width,int height){
     size.setWidth(width);
     size.setHeight(height);

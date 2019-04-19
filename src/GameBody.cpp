@@ -15,7 +15,8 @@ void GameBody::dealEvent(){
 
 void GameBody::renderBegin(){
 	SDL_SetRenderTarget(render,win->getCanva());
-	SDL_SetRenderDrawColor(render,255,255,255,255);
+    gbColor color = win->getBackgroundColor();
+	SDL_SetRenderDrawColor(render, color.getR(), color.getG(), color.getB(), color.getA());
 	SDL_RenderClear(render);	
 }
 

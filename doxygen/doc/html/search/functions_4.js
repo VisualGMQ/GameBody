@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['gamebody',['GameBody',['../class_game_body.html#ad93266a1461592dbc9e9f452adff1304',1,'GameBody']]],
+  ['gameexit',['gameExit',['../class_game_body.html#a45b3ecd1c3440b75a5316e322a2698e5',1,'GameBody']]],
+  ['gb_5fcreate_5fgetfunc',['GB_CREATE_GETFUNC',['../classgb_window.html#ae9cad58be7ed334b148502b1e0f6fbc7',1,'gbWindow::GB_CREATE_GETFUNC(SDL_Renderer *, Render, render)'],['../classgb_window.html#a4dac120762629bb0a0731950f22a0835',1,'gbWindow::GB_CREATE_GETFUNC(SDL_Texture *, Canva, canva)']]],
+  ['gb_5fcreate_5fgetsetfunc',['GB_CREATE_GETSETFUNC',['../classgb_texture.html#a786c7e0838dfe3ffd0da2488e30d8cff',1,'gbTexture::GB_CREATE_GETSETFUNC(gbPoint, Pos, position)'],['../classgb_texture.html#ae5f63ab97092da9aad276c9455cafab8',1,'gbTexture::GB_CREATE_GETSETFUNC(float, Angle, angle)'],['../classgb_texture.html#a0d3f3eb5103dc70d99d72483ce6aeea6',1,'gbTexture::GB_CREATE_GETSETFUNC(gbColor, KeyColor, keyColor)']]],
+  ['gb_5fget_5fbasic_5fsource',['GB_GET_BASIC_SOURCE',['../classgb_texture.html#ae20f0e9813df863f5a4a7b2a12330214',1,'gbTexture::GB_GET_BASIC_SOURCE()'],['../classgb_window.html#a7a24cdcd80201982dca8944b073a76f9',1,'gbWindow::GB_GET_BASIC_SOURCE()'],['../classgb_color.html#aa1cfdc1c48c31e1859f4a13331c72a09',1,'gbColor::GB_GET_BASIC_SOURCE()']]],
+  ['gbcolor',['gbColor',['../classgb_color.html#a8e2a9d60e52e47eddd01e977c8a34a18',1,'gbColor::gbColor()'],['../classgb_color.html#a41c052aa6944c5e3951ad25534d13aa1',1,'gbColor::gbColor(SDL_Color color)'],['../classgb_color.html#afd3f890cacd7ce4eb3f71aac1153d6a2',1,'gbColor::gbColor(int r, int g, int b, int a=255)']]],
+  ['gbdrawtool',['gbDrawTool',['../classgb_draw_tool.html#a6de82219b479d3f2daf1e48d2a22c6c3',1,'gbDrawTool::gbDrawTool()=delete'],['../classgb_draw_tool.html#a63c04389a520c9dba4901a340eca5358',1,'gbDrawTool::gbDrawTool(SDL_Renderer *)']]],
+  ['gbpoint',['gbPoint',['../classgb_point.html#a7d9c23d0ce16d07461f66ea44f7cde20',1,'gbPoint::gbPoint()'],['../classgb_point.html#a996a435065205fc3122ee264d30e1b87',1,'gbPoint::gbPoint(int x, int y)'],['../classgb_point.html#aab8e815703f5806ab7c695debcc548a4',1,'gbPoint::gbPoint(SDL_Point p)']]],
+  ['gbrect',['gbRect',['../classgb_rect.html#a92bc23d7f814473c95c10e55b5b36887',1,'gbRect::gbRect()'],['../classgb_rect.html#ad87d8d116e21198f08bdcffdbbe6361f',1,'gbRect::gbRect(int x, int y, int w, int h)'],['../classgb_rect.html#ad2320622e9b449ec70dc99fd206ba3cf',1,'gbRect::gbRect(SDL_Rect rect)']]],
+  ['gbsize',['gbSize',['../classgb_size.html#af390f2ea32d64ffa3b74f1c0da1d9380',1,'gbSize::gbSize()'],['../classgb_size.html#add567a0e5d087f3e02aa946f85324eab',1,'gbSize::gbSize(int w, int h)']]],
+  ['gbtexture',['gbTexture',['../classgb_texture.html#a709b0b579fb9154b752ae50e165eb3d8',1,'gbTexture::gbTexture(SDL_Texture *texture, SDL_Renderer *render)'],['../classgb_texture.html#ae90e7edb831d00f80d5d5a728638a6b6',1,'gbTexture::gbTexture(const string path, SDL_Renderer *render)'],['../classgb_texture.html#a2ee6447c6deb2f8559a949b48b9286de',1,'gbTexture::gbTexture(int width, int height, SDL_Renderer *render)']]],
+  ['gbwindow',['gbWindow',['../classgb_window.html#adc2896dea024e21231f0c775f5a7edda',1,'gbWindow::gbWindow(SDL_Window *, SDL_Renderer *render)'],['../classgb_window.html#a47e8d87e8905b3e7a126d3b1f3bfe66d',1,'gbWindow::gbWindow(const string title, int width, int height, Uint32 type, string iconpath=&quot;&quot;)']]],
+  ['getbrightness',['getBrightness',['../classgb_window.html#aa5a6dbbedb1b0421c5ce41753df71ba3',1,'gbWindow']]],
+  ['getkeystate',['getKeyState',['../classgb_input.html#a6acdc1c4b53832139cf3d1cdf06061fe',1,'gbInput']]],
+  ['getmode',['getMode',['../classgb_window.html#af86a84effc2ab72df5dfa881c5e6d620',1,'gbWindow']]],
+  ['getmousepoint',['getMousePoint',['../classgb_input.html#a4990717da115800069b6732bf1a084a8',1,'gbInput']]],
+  ['getmousestate',['getMouseState',['../classgb_input.html#accf6fe3ece1c770b30c83644ff6b473d',1,'gbInput']]],
+  ['getposition',['getPosition',['../classgb_window.html#acf7f12b75b0b9b3f25105569f77e8f80',1,'gbWindow']]],
+  ['getsize',['getSize',['../classgb_texture.html#a3ecd2c1dfa7bf44db57883a85564f182',1,'gbTexture::getSize()'],['../classgb_window.html#af329e62282ec4ed7184eb8c58d7f7809',1,'gbWindow::getSize()']]],
+  ['gettexture',['getTexture',['../classtexture_factory.html#a580ab219f0b06a37795bb64b1a070f1a',1,'textureFactory']]],
+  ['gettexturefromimage',['getTextureFromImage',['../classtexture_factory.html#ab14e97fdc012fd7b6642c5792c8f379c',1,'textureFactory']]],
+  ['gettexturefromtexture',['getTextureFromTexture',['../classtexture_factory.html#ab531da926bf210ac07e6493261dd3c53',1,'textureFactory']]],
+  ['gettitle',['getTitle',['../classgb_window.html#a42dac83ea2862f0e5277eaf1df4bf740',1,'gbWindow']]]
+];

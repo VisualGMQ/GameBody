@@ -18,7 +18,8 @@ public:
     void setPos(int,int);
     GB_CREATE_GETSETFUNC(gbPoint,Pos,position);
     GB_CREATE_GETSETFUNC(float,Angle,angle);
-    GB_CREATE_GETSETFUNC(gbColor,KeyColor,keyColor);
+    GB_CREATE_GETFUNC(gbColor,KeyColor,keyColor);
+    void setKeyColor(gbColor);
     GB_GET_BASIC_SOURCE(SDL_Texture*,texture);
     gbSize getSize(){return size;}
     void scale(int,int);

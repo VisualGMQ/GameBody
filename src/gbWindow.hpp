@@ -105,6 +105,7 @@ public:
 	 */
 	GB_CREATE_GETFUNC(SDL_Renderer*,Render,render);
 	GB_CREATE_GETFUNC(SDL_Texture*,Canva,canva);
+	GB_CREATE_GETSETFUNC(gbColor, BackgroundColor, bgcolor);
 	~gbWindow();
 protected:
 	/** @fn loadIcon(string path)
@@ -117,6 +118,7 @@ protected:
 	SDL_Renderer* render;
 	SDL_Surface* icon;
 	SDL_Window* window;
+	gbColor bgcolor;
 };
 
 #endif

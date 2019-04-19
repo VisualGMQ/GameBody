@@ -77,9 +77,9 @@ void gbDrawTool::endDraw(gbColor color){
 	SDL_SetRenderDrawColor(render,color.getR(),color.getG(),color.getB(),color.getA());
 }
 
-void gbDrawTool::drawLine(SDL_Texture* dst,int x1,int x2,int y1,int y2,gbColor color){
+void gbDrawTool::drawLine(SDL_Texture* dst,int x1,int y1,int x2,int y2,gbColor color){
 		gbColor tmp = startDraw(dst,color);
-		SDL_RenderDrawLine(render,x1,x2,y1,y2);	
+		SDL_RenderDrawLine(render,x1,y1,x2,y2);	
 		endDraw(tmp);
 }
 
