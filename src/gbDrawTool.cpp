@@ -21,120 +21,122 @@ bool gbDrawTool::changeTTF(const string path){
 	return true;
 }
 
-void gbDrawTool::drawText(SDL_Texture* dst,string text,int x,int y,int w,int h,int ptsize,gbColor color){
-	drawText(dst,text,gbRect(x,y,w,h),ptsize,color);
+void gbDrawTool::drawText(SDL_Texture* dst,string text,int x,int y,int w,int h,int ptsize,SDL_Color color){
+	SDL_Rect rect={x,y,w,h};
+	drawText(dst,text, rect,ptsize,color);
 }
 
-void gbDrawTool::drawText(SDL_Texture* dst,string text,gbRect drect,int ptsize,gbColor color){
+void gbDrawTool::drawText(SDL_Texture* dst,string text,SDL_Rect drect,int ptsize,SDL_Color color){
 	TTF_Font* font = TTF_OpenFont(fontPath.c_str(),ptsize);
 	if(font == nullptr){
 		SDL_Log("font can't be load");
 		return;
 	}
-	SDL_Surface* surface = TTF_RenderUTF8_Blended(font,text.c_str(),color.get());
+	SDL_Surface* surface = TTF_RenderUTF8_Blended(font,text.c_str(),color);
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(render,surface);
-	gbColor tmp = startDraw(dst, color);
-	SDL_Rect rect = drect.get();
-	SDL_RenderCopy(render,texture,nullptr,&rect);
+	SDL_Color tmp = startDraw(dst, color);
+	SDL_RenderCopy(render,texture,nullptr,&drect);
 	endDraw(tmp);
 	TTF_CloseFont(font);
 	SDL_FreeSurface(surface);
 	SDL_DestroyTexture(texture);
 }
 
-void gbDrawTool::drawTextShaded(SDL_Texture* dst,string text,int x,int y,int w,int h,int ptsize,gbColor fontColor,gbColor shadeColor){
-	drawTextShaded(dst,text,gbRect(x,y,w,h),ptsize,fontColor,shadeColor);
+void gbDrawTool::drawTextShaded(SDL_Texture* dst,string text,int x,int y,int w,int h,int ptsize,SDL_Color fontColor,SDL_Color shadeColor){
+	SDL_Rect rect = {x,y,w,h};
+	drawTextShaded(dst,text,rect,ptsize,fontColor,shadeColor);
 }
 
-void gbDrawTool::drawTextShaded(SDL_Texture* dst,string text,gbRect drect,int ptsize,gbColor fontColor,gbColor shadeColor){
+void gbDrawTool::drawTextShaded(SDL_Texture* dst,string text,SDL_Rect drect,int ptsize,SDL_Color fontColor,SDL_Color shadeColor){
 	TTF_Font* font = TTF_OpenFont(fontPath.c_str(),ptsize);
 	if(font == nullptr){
 		SDL_Log("font can't be load");
 		return;
 	}
-	SDL_Surface* surface = TTF_RenderUTF8_Shaded(font,text.c_str(),fontColor.get(),shadeColor.get());
+	SDL_Surface* surface = TTF_RenderUTF8_Shaded(font,text.c_str(),fontColor,shadeColor);
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(render,surface);
-	gbColor tmp = startDraw(dst, fontColor);
-	SDL_Rect rect = drect.get();
-	SDL_RenderCopy(render,texture,nullptr,&rect);
+	SDL_Color tmp = startDraw(dst, fontColor);
+	SDL_RenderCopy(render,texture,nullptr,&drect);
 	endDraw(tmp);
 	TTF_CloseFont(font);
 	SDL_FreeSurface(surface);
 	SDL_DestroyTexture(texture);
 }
 
-gbColor gbDrawTool::startDraw(SDL_Texture* dst,gbColor color){
+SDL_Color gbDrawTool::startDraw(SDL_Texture* dst,SDL_Color color){
 	SDL_SetRenderTarget(render,dst);
-	Uint8 r,g,b,a;
-	SDL_GetRenderDrawColor(render,&r,&g,&b,&a);
-	gbColor tcolor(r,g,b,a);
-	SDL_SetRenderDrawColor(render,color.getR(),color.getG(),color.getB(),color.getA());
+	SDL_Color tcolor;
+	SDL_GetRenderDrawColor(render,&tcolor.r,&tcolor.g,&tcolor.b,&tcolor.a);
+	SDL_SetRenderDrawColor(render,color.r,color.g,color.b,color.a);
 	return tcolor;
 }
 
-void gbDrawTool::endDraw(gbColor color){
+void gbDrawTool::endDraw(SDL_Color color){
 	SDL_SetRenderTarget(render,nullptr);
-	SDL_SetRenderDrawColor(render,color.getR(),color.getG(),color.getB(),color.getA());
+	SDL_SetRenderDrawColor(render,color.r,color.g,color.b,color.a);
 }
 
-void gbDrawTool::drawLine(SDL_Texture* dst,int x1,int y1,int x2,int y2,gbColor color){
-		gbColor tmp = startDraw(dst,color);
+void gbDrawTool::drawLine(SDL_Texture* dst,int x1,int y1,int x2,int y2,SDL_Color color){
+		SDL_Color tmp = startDraw(dst,color);
 		SDL_RenderDrawLine(render,x1,y1,x2,y2);	
 		endDraw(tmp);
 }
 
-void gbDrawTool::drawLine(SDL_Texture* dst,gbPoint p1,gbPoint p2,gbColor color){
-		drawLine(dst,p1.getX(),p1.getY(),p2.getX(),p2.getY(),color);
+void gbDrawTool::drawLine(SDL_Texture* dst,SDL_Point p1,SDL_Point p2,SDL_Color color){
+		drawLine(dst,p1.x,p1.y,p2.x,p2.y,color);
 }
 
-void gbDrawTool::drawCircle(SDL_Texture* dst,int centerx,int centery,int radius,gbColor color){
-		gbColor tmp = startDraw(dst,color);
+void gbDrawTool::drawCircle(SDL_Texture* dst,int centerx,int centery,int radius,SDL_Color color){
+		SDL_Color tmp = startDraw(dst,color);
 		for(int i=1;i<60;i++)
 			SDL_RenderDrawLine(render,centerx+cos(6*i*M_PI/180)*radius,centery+sin(6*i*M_PI/180)*radius,centerx+cos(6*(i+1)*M_PI/180)*radius,centery+sin(6*(i+1)*M_PI/180)*radius);	
 			SDL_RenderDrawLine(render,centerx+radius,centery,centerx+cos(6*M_PI/180)*radius,centery+sin(6*M_PI/180)*radius);	
 		endDraw(tmp);
 }
 
-void gbDrawTool::drawCircle(SDL_Texture* dst,gbPoint center,int radius,gbColor color){
-	drawCircle(dst,center.getX(),center.getY(),radius,color);
+void gbDrawTool::drawCircle(SDL_Texture* dst,SDL_Point center,int radius,SDL_Color color){
+	drawCircle(dst,center.x,center.y,radius,color);
 }
 
-void gbDrawTool::drawRect(SDL_Texture* dst,gbRect rect,gbColor color){
-	gbColor tmp = startDraw(dst,color);
-	SDL_RenderDrawRect(render,&rect.get());
+void gbDrawTool::drawRect(SDL_Texture* dst,SDL_Rect rect,SDL_Color color){
+	SDL_Color tmp = startDraw(dst,color);
+	SDL_RenderDrawRect(render,&rect);
 	endDraw(tmp);
 }
 
-void gbDrawTool::drawRect(SDL_Texture* dst,int x,int y,int w,int h,gbColor color){
-	drawRect(dst,gbRect(x,y,w,h),color);
-}
-
-void gbDrawTool::drawRect(SDL_Texture* dst,gbPoint lt,gbSize size,gbColor color){
-	gbRect rect(lt.getX(),lt.getY(),size.getWidth(),size.getHeight());
+void gbDrawTool::drawRect(SDL_Texture* dst,int x,int y,int w,int h,SDL_Color color){
+	SDL_Rect rect={x,y,w,h};
 	drawRect(dst,rect,color);
 }
 
-void gbDrawTool::fillRect(SDL_Texture* dst,gbRect rect,gbColor color){
-	gbColor tmp = startDraw(dst,color);
-	SDL_RenderFillRect(render,&rect.get());
+void gbDrawTool::drawRect(SDL_Texture* dst,SDL_Point lt,SDL_Point size,SDL_Color color){
+	SDL_Rect rect={lt.x,lt.y,size.x,size.y};
+	drawRect(dst,rect,color);
+}
+
+void gbDrawTool::fillRect(SDL_Texture* dst,SDL_Rect rect,SDL_Color color){
+	SDL_Color tmp = startDraw(dst,color);
+	SDL_RenderFillRect(render,&rect);
 	endDraw(tmp);
 }
 
-void gbDrawTool::fillRect(SDL_Texture* dst,gbPoint lt,gbSize size,gbColor color){
-	SDL_Rect rect={lt.getX(),lt.getY(),size.getWidth(),size.getHeight()};
-	fillRect(dst,gbRect(rect),color);
+void gbDrawTool::fillRect(SDL_Texture* dst,SDL_Point lt,SDL_Point size,SDL_Color color){
+	SDL_Rect rect={lt.x,lt.y,size.x,size.y};
+	fillRect(dst,rect,color);
 }
 
-void gbDrawTool::fillRect(SDL_Texture* dst,int x,int y,int w,int h,gbColor color){
-	fillRect(dst,gbRect(x,y,w,h),color);
+void gbDrawTool::fillRect(SDL_Texture* dst,int x,int y,int w,int h,SDL_Color color){
+	SDL_Rect rect={x,y,w,h};
+	fillRect(dst,rect,color);
 }
 
 
-void gbDrawTool::drawSolidRect(SDL_Texture* texture,gbRect rect,gbColor outline,gbColor fillColor){
+void gbDrawTool::drawSolidRect(SDL_Texture* texture,SDL_Rect rect,SDL_Color outline,SDL_Color fillColor){
 	fillRect(texture,rect,fillColor);
 	drawRect(texture,rect,outline);	
 }
 
-void gbDrawTool::drawSolidRect(SDL_Texture* texture,int x,int y,int w,int h,gbColor outline,gbColor fillColor){
-	drawSolidRect(texture,gbRect(x,y,w,h),outline,fillColor);	
+void gbDrawTool::drawSolidRect(SDL_Texture* texture,int x,int y,int w,int h,SDL_Color outline,SDL_Color fillColor){
+	SDL_Rect rect = {x,y,w,h};
+	drawSolidRect(texture,rect,outline,fillColor);	
 }

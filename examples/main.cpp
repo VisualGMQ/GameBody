@@ -13,11 +13,13 @@ public:
             SDL_BlitScaled(image, nullptr, dst, &rect);
             IMG_SavePNG(dst, "result.png");
             */
-        win->setBackgroundColor(gbColor(0, 0, 0));
+        SDL_Color color={0,0,0,255};
+        win->setBackgroundColor(color);
         texture = texturefactory->getTextureFromImage("./2.png");
         texture->setPos(0, 0);
         texture->enableKeyColor(true);
-        texture->setKeyColor(gbColor(255, 255, 255));
+        SDL_Color color2={255,255,255,255};
+        texture->setKeyColor(color2);
     }
 
     void update() override{

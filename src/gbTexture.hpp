@@ -2,8 +2,6 @@
 #define __GBTEXTURE__HPP__ 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include "geomentry.hpp"
-#include "header.hpp"
 #include <string>
 #include <vector>
 using namespace std;
@@ -16,12 +14,14 @@ public:
     bool isKeyColorEnable(){return isKeyColor;}
     void enableKeyColor(bool enable){isKeyColor = enable;}
     void setPos(int,int);
-    GB_CREATE_GETSETFUNC(gbPoint,Pos,position);
-    GB_CREATE_GETSETFUNC(float,Angle,angle);
-    GB_CREATE_GETFUNC(gbColor,KeyColor,keyColor);
-    void setKeyColor(gbColor);
-    GB_GET_BASIC_SOURCE(SDL_Texture*,texture);
-    gbSize getSize(){return size;}
+    SDL_Point getPos(){return position;}
+    void setPos(SDL_Point pos){position=pos;}
+    float getAngle(){return angle;}
+    void setAngle(float a){angle = a;}
+    SDL_Color getKeyColor(){return keyColor;}
+    void setKeyColor(SDL_Color);
+    SDL_Texture* get(){return texture;}
+    SDL_Point getSize(){return size;}
     void scale(int,int);
     void scale(float);
     void flipX(){flip = SDL_FLIP_VERTICAL;}
@@ -33,12 +33,12 @@ public:
 
 private:
     SDL_Texture* texture;
-    gbColor keyColor;
+    SDL_Color keyColor;
     bool isKeyColor;
-    gbPoint position;
+    SDL_Point position;
     float angle;
     SDL_Surface* surface;
-    gbSize size;
+    SDL_Point size;
     SDL_Renderer* render;
     SDL_RendererFlip flip;
 };

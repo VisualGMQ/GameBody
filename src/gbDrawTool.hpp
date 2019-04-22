@@ -9,8 +9,6 @@
 #include <string>
 #include <cstdlib>
 #include <map>
-#include "header.hpp"
-#include "geomentry.hpp"
 using namespace std;
 
 /* @var preFontPath 
@@ -41,22 +39,22 @@ public:
      * @brief 构造函数，需要传入一个render
      */
 	gbDrawTool(SDL_Renderer*);
-	void drawText(SDL_Texture*,string text,int x,int y,int w,int h,int ptsize,gbColor);
-	void drawText(SDL_Texture*,string text,gbRect rect,int ptsize,gbColor);
-	void drawTextShaded(SDL_Texture*,string text,int x,int y,int w,int h,int ptsize,gbColor fontColor,gbColor shadeColor);
-	void drawTextShaded(SDL_Texture*,string text,gbRect rect,int ptsize,gbColor fontColor,gbColor shadeColor);
-	void drawLine(SDL_Texture*,int x1,int y1,int x2,int y2,gbColor);
-	void drawLine(SDL_Texture*,gbPoint p1,gbPoint p2,gbColor);
-	void drawCircle(SDL_Texture*,int centerx,int centery,int radius,gbColor);
-	void drawCircle(SDL_Texture*,gbPoint center,int radius,gbColor);
-	void drawRect(SDL_Texture*,int x,int y,int w,int h,gbColor);
-	void drawRect(SDL_Texture*,gbRect,gbColor);
-	void drawRect(SDL_Texture*,gbPoint lt,gbSize size,gbColor);
-	void fillRect(SDL_Texture*,int x,int y,int w,int h,gbColor);
-	void fillRect(SDL_Texture*,gbRect,gbColor);
-	void fillRect(SDL_Texture*,gbPoint p,gbSize size,gbColor);
-	void drawSolidRect(SDL_Texture*,int x,int y,int w,int h,gbColor outline,gbColor fillColor);
-	void drawSolidRect(SDL_Texture*,gbRect,gbColor outline,gbColor fillColor);
+	void drawText(SDL_Texture*,string text,int x,int y,int w,int h,int ptsize,SDL_Color);
+	void drawText(SDL_Texture*,string text,SDL_Rect rect,int ptsize,SDL_Color);
+	void drawTextShaded(SDL_Texture*,string text,int x,int y,int w,int h,int ptsize,SDL_Color fontColor,SDL_Color shadeColor);
+	void drawTextShaded(SDL_Texture*,string text,SDL_Rect rect,int ptsize,SDL_Color fontColor,SDL_Color shadeColor);
+	void drawLine(SDL_Texture*,int x1,int y1,int x2,int y2,SDL_Color);
+	void drawLine(SDL_Texture*,SDL_Point p1,SDL_Point p2,SDL_Color);
+	void drawCircle(SDL_Texture*,int centerx,int centery,int radius,SDL_Color);
+	void drawCircle(SDL_Texture*,SDL_Point center,int radius,SDL_Color);
+	void drawRect(SDL_Texture*,int x,int y,int w,int h,SDL_Color);
+	void drawRect(SDL_Texture*,SDL_Rect,SDL_Color);
+	void drawRect(SDL_Texture*,SDL_Point lt,SDL_Point size,SDL_Color);
+	void fillRect(SDL_Texture*,int x,int y,int w,int h,SDL_Color);
+	void fillRect(SDL_Texture*,SDL_Rect,SDL_Color);
+	void fillRect(SDL_Texture*,SDL_Point p,SDL_Point size,SDL_Color);
+	void drawSolidRect(SDL_Texture*,int x,int y,int w,int h,SDL_Color outline,SDL_Color fillColor);
+	void drawSolidRect(SDL_Texture*,SDL_Rect ,SDL_Color outline,SDL_Color fillColor);
     /**@fn changeTTF(const string path)
      * @param path 新字体文件的路径
      * @brief 改变TTF的路径，也就是设置新的ttf文件。
@@ -66,8 +64,8 @@ public:
      */
 	bool changeTTF(const string path);
 private:
-	gbColor startDraw(SDL_Texture* dst,gbColor color);
-	void endDraw(gbColor);
+	SDL_Color startDraw(SDL_Texture* dst,SDL_Color color);
+	void endDraw(SDL_Color);
 	SDL_Renderer* render;
 	string fontPath;
 	map<FontType, string> fontMap;

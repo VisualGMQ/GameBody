@@ -7,8 +7,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <string>
-#include "geomentry.hpp"
-#include "header.hpp"
 using namespace std;
 
 /**
@@ -47,7 +45,7 @@ public:
 	 *  @brief 返回窗体大小
 	 *  @return 返回gbSize
 	 */
-	gbSize getSize();
+	SDL_Point getSize();
 	/** @fn isFocus()
 	 *  @brief 判断是否有焦点
 	 *  @return 如果有焦点返回true
@@ -62,7 +60,7 @@ public:
 	 *  @brief 返回窗体位置
 	 *  @see setPosition()
 	 */
-	gbPoint getPosition();
+	SDL_Point getPosition();
 	/** @fn getBrightness()
 	 *  @brief 返回窗体亮度
 	 *  @see setBrightness()
@@ -99,13 +97,14 @@ public:
 	/** @fn getWindow()
 	 *  @brief 获得SDL_Window*
 	 */
-	GB_GET_BASIC_SOURCE(SDL_Window*,window);
+	SDL_Window* get(){return window;}
 	/** @fn getRender()
 	 *  @param 获得这个window的render
 	 */
-	GB_CREATE_GETFUNC(SDL_Renderer*,Render,render);
-	GB_CREATE_GETFUNC(SDL_Texture*,Canva,canva);
-	GB_CREATE_GETSETFUNC(gbColor, BackgroundColor, bgcolor);
+	SDL_Renderer* getRender(){return render;}
+	SDL_Texture* getCanva(){return canva;}
+	SDL_Color getBackgroundColor(){return bgcolor;}
+	void setBackgroundColor(SDL_Color color){bgcolor = color;}
 	~gbWindow();
 protected:
 	/** @fn loadIcon(string path)
@@ -118,7 +117,7 @@ protected:
 	SDL_Renderer* render;
 	SDL_Surface* icon;
 	SDL_Window* window;
-	gbColor bgcolor;
+	SDL_Color bgcolor;
 };
 
 #endif
