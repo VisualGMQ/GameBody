@@ -9,6 +9,16 @@
 #define __HEADER_HPP__
 
 #include <SDL2/SDL.h>
+#include <iostream>
+#include <string>
+#include "Director.hpp"
+using std::string;
+using std::cout;
+using std::endl;
+
+void Log(std::string msg){
+	cout<<"in "<<__FILE__<<","<<__TIME__<<","<<__LINE__<<":"<<msg<<endl;
+}
 
 /**
  * @def GB_CREATE_GETFUNC(vartype,funcname,varname)
