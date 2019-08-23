@@ -11,7 +11,6 @@
 #include <SDL2/SDL.h>
 #include <iostream>
 #include <string>
-#include "Director.hpp"
 using std::string;
 using std::cout;
 using std::endl;

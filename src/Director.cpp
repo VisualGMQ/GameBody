@@ -47,7 +47,7 @@ void GameBody::update(){
 }
 
 void GameBody::registerScene(string key, gbScene* scene){
-    if(scenemap.count(key) ==0 )
+    if(scenemap.count(key) == 0)
         scenemap[key] = scene;
 }
 

@@ -9,6 +9,9 @@
 #include "gbDrawTool.hpp"
 #include "gbTexture.hpp"
 using namespace std;
+
+class gbScene;
+
 /**
  * @class GameBody
  * @brief 这个类封装了很多的SDL方法，方便你去快速构建一个应用

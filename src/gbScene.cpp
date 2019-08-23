@@ -5,6 +5,6 @@ gbScene::gbScene(){
 }
 
 void gbScene::changeToNextScene(string key){
-   GameBody* director = DirectorSiglton::getInstance(); 
+    GameBody* director = DirectorSiglton::getInstance(); 
     director->setScene(key);
 }
