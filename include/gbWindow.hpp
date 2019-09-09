@@ -103,8 +103,6 @@ public:
 	 */
 	SDL_Renderer* getRender(){return render;}
 	SDL_Texture* getCanva(){return canva;}
-	SDL_Color getBackgroundColor(){return bgcolor;}
-	void setBackgroundColor(SDL_Color color){bgcolor = color;}
 	~gbWindow();
 protected:
 	/** @fn loadIcon(string path)
@@ -117,7 +115,6 @@ protected:
 	SDL_Renderer* render;
 	SDL_Surface* icon;
 	SDL_Window* window;
-	SDL_Color bgcolor;
 };
 
 #endif

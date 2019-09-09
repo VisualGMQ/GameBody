@@ -64,7 +64,8 @@ void gbDrawTool::drawTextShaded(SDL_Texture* dst,string text,SDL_Rect drect,int 
 }
 
 SDL_Color gbDrawTool::startDraw(SDL_Texture* dst,SDL_Color color){
-	SDL_SetRenderTarget(render,dst);
+	if(dst != nullptr)
+		SDL_SetRenderTarget(render,dst);
 	SDL_Color tcolor;
 	SDL_GetRenderDrawColor(render,&tcolor.r,&tcolor.g,&tcolor.b,&tcolor.a);
 	SDL_SetRenderDrawColor(render,color.r,color.g,color.b,color.a);

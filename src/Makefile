@@ -1,16 +1,23 @@
-all: gbWindow geomentry gbDrawTool Director gbTexture gbScene
-geomentry:geomentry.cpp
-	g++ -c geomentry.cpp -o ../obj/geomentry.o -std=c++11
-Director:Director.cpp
-	g++ -c Director.cpp -o ../obj/Director.o -std=c++11
-gbWindow:gbWindow.cpp
-	g++ -c gbWindow.cpp -o ../obj/gbWindow.o -std=c++11
-gbDrawTool:gbDrawTool.cpp
-	g++ -c gbDrawTool.cpp -o ../obj/gbDrawTool.o -std=c++11
-gbTexture:gbTexture.cpp
-	g++ -c gbTexture.cpp -o ../obj/gbTexture.o -std=c++11
-gbScene:gbScene.cpp
-	g++ -c gbScene.cpp -o ../obj/gbScene.o -std=c++11
-.PHONY:
+HEADER_PATH=-I../include 
+CC=g++ 
+CPP_STD=-std=c++11 
+SDL_HEADER=`sdl2-config --cflags` `pkg-config --cflags SDL2_image SDL2_ttf`
+CONFIG=${HEADER_PATH} ${SDL_HEADER} ${CPP_STD}
+BUILD_PATH=../obj
+OBJS=gbDrawTool.o gbWindow.o geomentry.o gbTexture.o
+
+message:
+	@echo "please input the obj you want to compile"
+gbDrawTool.o:
+	${CC} gbDrawTool.cpp -c -o ${BUILD_PATH}/gbDrawTool.o ${CONFIG}
+gbWindow.o: 
+	${CC} gbWindow.cpp -c -o ${BUILD_PATH}/gbWindow.o ${CONFIG} 
+geomentry.o: 
+	${CC} geomentry.cpp -c -o ${BUILD_PATH}/geomentry.o ${CONFIG}
+gbTexture.o: 
+	${CC} gbTexture.cpp -c -o ${BUILD_PATH}/gbTexture.o ${CONFIG}
+
+.PHONY:clean all
+all:${OBJS}
 clean:
-	-rm -rf ../obj/*
+	@-rm ../obj/*
