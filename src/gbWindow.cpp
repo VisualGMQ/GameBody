@@ -9,8 +9,8 @@ gbWindow::gbWindow(SDL_Window* window,SDL_Renderer* render){
 	if(render == nullptr)
 		abort();
 	this->render = render;
-	gbSize size = getSize();
-	canva = SDL_CreateTexture(render,SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, size.getWidth(),size.getHeight());
+	SDL_Point size = getSize();
+	canva = SDL_CreateTexture(render,SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, size.x, size.y);
 	if(canva == nullptr)
 		abort();
 }
@@ -24,8 +24,8 @@ gbWindow::gbWindow(const string title,int width,int height,Uint32 flag,string ic
 	render = SDL_CreateRenderer(window,-1,0);
 	if(render == nullptr)
 		abort();
-	gbSize size = getSize();
-	canva = SDL_CreateTexture(render,SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, size.getWidth(),size.getHeight());
+	SDL_Point size = getSize();
+	canva = SDL_CreateTexture(render,SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, size.x, size.y);
 	if(canva == nullptr)
 		abort();
 }
@@ -42,10 +42,10 @@ bool gbWindow::loadIcon(string path){
     return false;
 }
 
-gbSize gbWindow::getSize(){
-	int w,h;
-	SDL_GetWindowSize(window,&w,&h);
-	return gbSize(w,h);
+SDL_Point gbWindow::getSize(){
+	SDL_Point size;
+	SDL_GetWindowSize(window,&size.x,&size.y);
+	return size;
 }
 
 bool gbWindow::isFocus(){
@@ -56,10 +56,10 @@ const string gbWindow::getTitle(){
 	return string(SDL_GetWindowTitle(window));
 }
 
-gbPoint gbWindow::getPosition(){
-	int x,y;
-	SDL_GetWindowPosition(window,&x,&y);
-	return gbPoint(x,y);
+SDL_Point gbWindow::getPosition(){
+	SDL_Point pos;
+	SDL_GetWindowPosition(window,&pos.x,&pos.y);
+	return pos;
 }
 
 Uint32 gbWindow::getMode(){

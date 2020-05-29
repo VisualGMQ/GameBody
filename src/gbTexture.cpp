@@ -32,8 +32,8 @@ textureFactory:: ~textureFactory(){
 void gbTexture::fitOriginSize(){
     int w,h;
     SDL_QueryTexture(this->texture, nullptr, nullptr, &w, &h);
-    size.setWidth(w);
-    size.setHeight(h);
+    size.x = w;
+    size.y = h;
 }
 
 gbTexture::gbTexture(SDL_Texture* texture,SDL_Renderer* render):surface(nullptr),angle(0),isKeyColor(false),texture(nullptr),render(render),flip(SDL_FLIP_NONE){
@@ -54,18 +54,18 @@ gbTexture::gbTexture(const string path, SDL_Renderer* render):angle(0),isKeyColo
 gbTexture::gbTexture(int width, int height, SDL_Renderer* render):surface(nullptr),angle(0),isKeyColor(false),texture(nullptr),render(render),flip(SDL_FLIP_NONE){
     texture = SDL_CreateTexture(render, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, width, height);
     this->render = render;
-    size.setWidth(width);
-    size.setHeight(height);
+    size.x = width;
+    size.y = height;
 }
 
 void gbTexture::setPos(int x, int y){
-    position.setX(x);
-    position.setY(y);
+    position.x = x;
+    position.y = y;
 }
 
-void gbTexture::setKeyColor(gbColor color){
+void gbTexture::setKeyColor(SDL_Color color){
     keyColor = color;
-    Uint32 c = SDL_MapRGB(surface->format, color.getR(), color.getG(), color.getB());
+    Uint32 c = SDL_MapRGB(surface->format, color.r, color.g, color.b);
     SDL_Log("%x", c);
     if(isKeyColor)
         SDL_SetColorKey(surface, SDL_TRUE, c); 
@@ -76,17 +76,17 @@ void gbTexture::setKeyColor(gbColor color){
 }
 
 void gbTexture::scale(int width,int height){
-    size.setWidth(width);
-    size.setHeight(height);
+    size.x = width;
+    size.y = height;
 }
 
 void gbTexture::scale(float s){
-    size.setWidth(int(size.getWidth()*s));
-    size.setHeight(int(size.getHeight()*s));
+    size.x = int(size.x*s);
+    size.y = int(size.y*s);
 }
 
 void gbTexture::update(){
-    SDL_Rect rect={position.getX(), position.getY(),size.getWidth(),size.getHeight()};
+    SDL_Rect rect={position.x, position.y,size.x,size.y};
     SDL_RenderCopyEx(render, texture, nullptr, &rect, angle, nullptr, flip);
 }
 
